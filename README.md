@@ -11,3 +11,9 @@
 8) In terminal, type => os install
 9) Select bootcamp session
 10) Select project to install
+
+
+#how to save work
+git add -A
+git commit -m "description"
+git push

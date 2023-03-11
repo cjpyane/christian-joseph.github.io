@@ -169,6 +169,14 @@ function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 var splitOne = stringOne.split(' ');
 var splitTwo = stringTwo.split(' ');
+var stro = splitOne.length;
+var strt = splitTwo.length;
+if(stro > strt){
+    return stringOne
+}else{
+    return stringTwo
+}
+  
 
 
 
@@ -185,6 +193,14 @@ var splitTwo = stringTwo.split(' ');
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     
+    if(stringOne > stringTwo){
+        return -1
+    }if(stringTwo > stringOne){
+        return 1
+    }if(stringOne = stringTwo){
+        return 0
+    }
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -199,7 +215,13 @@ function sortAscending(stringOne, stringTwo) {
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
-
+if(stringOne < stringTwo){
+    return -1
+}if(stringOne > stringTwo){
+    return 1
+}if(stringOne = stringTwo){
+    return 0
+}
 
 
     // YOUR CODE ABOVE HERE //

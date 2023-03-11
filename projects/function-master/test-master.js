@@ -19,7 +19,7 @@
 
     yay();
 
-    assert.equal(outside_the_function, "???");
+    assert.equal(outside_the_function, "can you see me?");
   });
 
   QUnit.test("Function Parameters become scoped to the function.", function(assert){

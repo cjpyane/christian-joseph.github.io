@@ -86,7 +86,13 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
+   typeof ('') === 'string';
+   typeof ([]) === 'array';
+   typeof ({}) === 'object';
+   typeof (undefined) === 'undefined';
+   typeof (1) === 'number'
     
+
     
     // YOUR CODE ABOVE HERE //
 }
