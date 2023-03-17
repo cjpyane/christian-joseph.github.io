@@ -86,13 +86,26 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-   typeof ('') === 'string';
-   typeof ([]) === 'array';
-   typeof ({}) === 'object';
-   typeof (undefined) === 'undefined';
-   typeof (1) === 'number'
+    typeof ('') === 'string';
+    typeof ([]) === 'array';
+    typeof ({}) === 'object';
+    typeof (undefined) === 'undefined';
+    typeof (1) === 'number'
+   
     
+    if (Array.isArray(value)){
+        return 'array';
+    }else if (value && typeof value === 'object' && value instanceof Date === false){
+        return 'object'
+    }else if(value instanceof Date ){
+        return 'date'
+    }else if (value === null){
+        return 'null'
+    }
+    return typeof value;
 
+
+      
     
     // YOUR CODE ABOVE HERE //
 }

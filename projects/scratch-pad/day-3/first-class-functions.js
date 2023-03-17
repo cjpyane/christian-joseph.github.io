@@ -77,10 +77,12 @@ function createEndsWithFilter(endsWith) {
  * the modify Function, but we need to collect the results into some collection.
  */
 function modifyStrings(strings, modify) {
-    // YOUR CODE BELOW HERE //
-    
-    
-    
+    // YOUR CODE BELOW HERE //    
+  var arg = []; 
+  for(let i = 0; i < strings.length; i++){
+    arg.push(modify(strings[i]))
+  } 
+return arg
     
     // YOUR CODE ABOVE HERE //
 }
@@ -96,7 +98,12 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
+    for (var i =0; i < strings.length; i++) {
+        if(test(strings[i]) === false) {
+            return false;
+        } 
+    } 
+    return true;
     
     
     

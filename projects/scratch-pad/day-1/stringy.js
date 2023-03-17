@@ -167,8 +167,8 @@ function join(stringOne, stringTwo) {
  */
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-var splitOne = stringOne.split(' ');
-var splitTwo = stringTwo.split(' ');
+var splitOne = stringOne;
+var splitTwo = stringTwo;
 var stro = splitOne.length;
 var strt = splitTwo.length;
 if(stro > strt){

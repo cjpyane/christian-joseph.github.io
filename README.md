@@ -13,7 +13,8 @@
 10) Select project to install
 
 
-#how to save work
+# How to save work
 git add -A
 git commit -m "description"
 git push
+

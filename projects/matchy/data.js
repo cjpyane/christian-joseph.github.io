@@ -78,8 +78,10 @@ var friends = [];
 function getRandom(animals){
   var randomIndex = Math.floor(Math.random() * animals.length);
   var index = animals[randomIndex];
-  return index
+  return friends.push(index)
 }
+
+animal.friends = friends
 
 
 
