@@ -35,10 +35,15 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
- 
+ return {
+    id: id,
+    nameFirst: nameFirst,
+    nameLast: nameLast
+ }
 }
 
 function makeContactList() {
+    
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
@@ -60,32 +65,32 @@ function makeContactList() {
     },
     findContact: function(fullName){
     var now = fullName.split(" ")
-        for(let i = 0; i < contacts.list; i++){
-            if(now[0] === contacts[i][nameFirst] && now[1] === contacts[i][nameLast]){
+        for(let i = 0; i < contacts.length; i++){
+            if(now[0] === contacts[i]["nameFirst"] && now[1] === contacts[i]["nameLast"]){
             return contacts[i]
         }
     } 
    
             return undefined;   
-}
+},
     
 
 
    
-},
+
     printAllContactNames: function(){
-        var list = '';
+        var list = [];
         for(var i = 0; i < contacts.length; i++){
-            var listTwo = contacts[i][nameFirst] + ' ' + contacts[i][nameLast] + '\n';
-            list += listTwo 
+            list.push(contacts[i].nameFirst + " " + contacts[i].nameLast)
+           // list += listTwo;
         }
-            return list
+            return list.join("\n")
     
 
     }
 
 }
-
+}
 
 
 // YOUR CODE GOES ABOVE HERE //

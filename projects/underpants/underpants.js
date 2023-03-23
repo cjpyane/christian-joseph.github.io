@@ -48,13 +48,14 @@ _.identity = function(value){
 _.typeOf = function(value){
 if (Array.isArray(value)){
         return 'array'
-    }else if (typeof value === 'object' && value === null){
+    }else if (value === null){
         return 'null'
     }
-    else  (value)
-        return typeof value
-    
+    else {
+        return typeof value;
+    }
 }
+
 
 
 /** _.first
@@ -291,8 +292,10 @@ _.filter = function(array, func){
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+_.pluck = function(array, property){
+    
 
-
+}
 /** _.every
 * Arguments:
 *   1) A collection

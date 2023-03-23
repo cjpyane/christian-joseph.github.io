@@ -9,54 +9,61 @@
  * and read every instruction carefully.
  */
 
+const { upperFirst } = require("lodash");
+
 //////////////////////////////////////////////////////////////////////
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 function search (animals, string,){
-if(animals.toUp.indexOf(string) !== 1){
-    return string.animals;
-}
-else {
-return null;
-}
+    for(let i = 0; i < animals.length; i++){
+    if(animals[i].name === string){  
+return animals[i]
+    } 
+    } return null
 };
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-function replace (animals, name, animal){
-   
-   
-}
+function replace (animals, name, replacement){
+   for(let i = 0; i < animals.length; i++){
+    if(animals[i].name === name){
+        animals[i] = replacement;
+    }
+   }
+
+};
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
-
+function remove(animals, name){
+    for(let i = 0; i < animals.length; i++){
+    if(animals[i].name === name){
+            animals.splice(name)
+        }
+    }
+};
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function add(animals, animal){
-    let itemExists = false;
-    for(let i = 0; i < animals.length; i++){
-        if(animals[i].name === animal.name){
-            itemExists = true
+    if ((animal.name.length > 0) && (animal.species.length > 0)) {
+        for(let i = 0; i < animals.length; i++){  
+            if(animal.name !== animals[i].name){
+                animals.push(animal);
+             
+            }
+          
+            
         }
-    }
-}
+    } return;
 
-
-/**
- * You did it! You're all done with Matchy!
- */
-
-
-
+};
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
