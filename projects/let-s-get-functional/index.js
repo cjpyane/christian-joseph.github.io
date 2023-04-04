@@ -32,40 +32,131 @@ var maleCount = function(array) {
 //use _.filter() to return an array of male customers
 // iterate through collection and pass each item to 'test function'
 // if 'test function' returns true, item is pushed to output array
-let males = _.filter(array, function(customer){
-    return customer.gender === 'male;'
-});
+let males = _.filter(array, function (customer) {
+    return customer.gender === 'male';
+});  // [ {male}, {male}, {male} ]
 return males.length
 };
 
 var femaleCount = function(array){
-    let females = _.reduce(array, function(accumulator, current){
-if (current.gender === 'female'){
-    acc += 1;
-}
-return acc;
-}, 0);
-
-
-
-
+    let females = _.reduce(array, function (accumulator, current) { // number f female customers | current item
+        // accumulator = 0 | current = {name: 'Adele', gender: 'female'}
+        if (current.gender === 'female') {
+            accumulator++;
+        }
+        return accumulator;
+    }, 0) // number of female customers
+    return females;
 };
 
-var oldestCustomer;
+var oldestCustomer = function (array) {
+    let outputObject = _.reduce(array, function (accumulator, current) {
+        if (accumulator.age > current.age) {
+            return accumulator
+        } else {
+            return current
+        }
+    })
+    return outputObject.name
+};
+var youngestCustomer = function (array) {
+    let outputObject = _.reduce(array, function (accumulator, current) {
+        if (accumulator.age < current.age) {
+            return accumulator
+        } else {
+            return current
+        }
+    })
+    return outputObject.name
+};
 
-var youngestCustomer;
+var averageBalance = function (array) {
+    var outputTotal = _.reduce(array, function (accumulator, current) {
+        var adjustedCurrentBalance = '';
+        for (let i = 0; i < current.balance.length; i++) {
+            if (current.balance[i] !== '$' && current.balance[i] !== ',') {
+                adjustedCurrentBalance += current.balance[i];
+            }
+        }
+        return accumulator += Number(adjustedCurrentBalance)
+    }, 0)
+    return outputTotal / array.length
+};
+   
 
-var averageBalance;
+var firstLetterCount = function (array, letter) {
+    let number = _.reduce(array, function (accumulator, current) {
+        if (current.name[0].toUpperCase() === letter.toUpperCase()) {
+            accumulator++
+        }
+        return accumulator;
+    }, 0);
+    return number;
+};
 
-var firstLetterCount;
+var friendFirstLetterCount = function (array, customer, letter) {
+    var number = _.reduce(array, function (accumulator, current) {
+        if (current.name === customer) {
+            accumulator += firstLetterCount(current.friends, letter)
+        }
+        return accumulator
+    }, 0)
+    return number
+};
 
-var friendFirstLetterCount;
+var friendsCount = function (array, name) {
+    var outputArray = _.reduce(array, function (accumulator, current) {
+        if (_.contains(_.pluck(current.friends, 'name'), name)) {
+            accumulator.push(current.name)
+        }
+        return accumulator
+    }, [])
+    return outputArray;
+};
 
-var friendsCount;
+var topThreeTags = function (array) {
+    var uniqueTagsObject = _.reduce(array, function (accumulator, current) {
+        for (let i = 0; i < current.tags.length; i++) {
+            if (!accumulator[current.tags[i]]) {
+                accumulator[current.tags[i]] = 1;
+            } else {
+                accumulator[current.tags[i]]++
+            }
+        }
+        return accumulator;
+    }, {});
+    var sortedArray = Object.values(uniqueTagsObject).sort()
+    var reverseSortedArray = sortedArray.reverse();
+    var topIndex = _.reduce(Object.values(uniqueTagsObject), function (accumulator, current, index) {
+        if (current === reverseSortedArray[0] && accumulator[0] === undefined) {
+            accumulator[0] = index;
+        } else if (current === reverseSortedArray[1] && accumulator[1] === undefined) {
+            accumulator[1] = index;
+        } else if (current === reverseSortedArray[2] && accumulator[2] === undefined) {
+            accumulator[2] = index;
+        }
+        return accumulator;
+    }, [])
 
-var topThreeTags;
+    var topTagArray = [];
+    topTagArray[0] = Object.keys(uniqueTagsObject)[topIndex[0]]
+    topTagArray[1] = Object.keys(uniqueTagsObject)[topIndex[1]]
+    topTagArray[2] = Object.keys(uniqueTagsObject)[topIndex[2]]
+    return topTagArray;
+}
+;
 
-var genderCount;
+var genderCount = function (array) {
+    var outputObject = _.reduce(array, function (accumulator, current) {
+        if (!accumulator[current.gender]) {
+            accumulator[current.gender] = 1;
+        } else {
+            accumulator[current.gender]++
+        }
+        return accumulator
+    }, {})
+    return outputObject
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

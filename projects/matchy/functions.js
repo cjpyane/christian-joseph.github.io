@@ -51,18 +51,15 @@ function remove(animals, name){
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function add(animals, animal){
-    if ((animal.name.length > 0) && (animal.species.length > 0)) {
-        for(let i = 0; i < animals.length; i++){  
-            if(animal.name !== animals[i].name){
-                animals.push(animal);
-             
-            }
-          
-            
+function add(array, animal){
+    for(let i = 0; i < array.length; i++){
+        if(animal.name === array[i].name){
+            return false;
         }
-    } return;
-
+    }
+    if(animal.name.length > 0 && animal.species.length > 0 ){
+        array.push(animal);
+    }
 };
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

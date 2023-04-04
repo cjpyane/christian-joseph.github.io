@@ -141,6 +141,16 @@ if(!Array.isArray(array)){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 _.indexOf = function(array, value){
+    for(let i = 0; i < array.length; i++ ){
+        if(array.includes(value)){
+            return 1
+                }else{
+                    return -1
+                }
+    }
+
+    //index of searchElemnt = first occurence of value fromindex = array
+
 
    
 }
@@ -210,7 +220,19 @@ _.each = function(collection, func){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
+_.unique = function(array){
+//make an array to hold new array
+let newArr = [];
+    
+    // loop through array
+    for(let i of array) {
+        if(newArr.indexOf(i) === -1) {
+            newArr.push(i);
+        }
+    }
+   return newArr
+};
+       
 
 /** _.filter
 * Arguments:
@@ -223,12 +245,17 @@ _.each = function(collection, func){
 * Edge Cases:
 *   1) What if <function> returns something other than true or false?
 * Examples:
-*   _.filter([1,2,3,4,5], function(x){return x%2 === 0}) -> [2,4]
+*   _.filter([1,2,3,4,5], function(x){return x%2 === 0}) -> [2,4,6,8,10]
 * Extra Credit:
 *   use _.each in your implementation
 */
 _.filter = function(array, func){
-   
+   let empty = [];
+   for(let i = 0; i < array.length; i++){
+    if(func(array[i], i, array)){
+        empty.push(array[i])
+    }
+   }return empty
 }
 
 /** _.reject
@@ -243,7 +270,14 @@ _.filter = function(array, func){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = function(array, func){
+    let empty = [];
+    for(let i = 0; i < array.length; i++){
+        if(!func(array[i], i, array)){
+            empty.push(array[i])
+        }
+    }return empty
+}
 
 /** _.partition
 * Arguments:
@@ -263,7 +297,23 @@ _.filter = function(array, func){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+_.partition = function(array, func){
+    let arrayone = [];
+    let arraytwo = [];
+    let finish = [];
+    for(let i = 0; i < array.length; i++){
+    if(func(array[i], i, array)){
+    arrayone.push(array[i])
+    
+}else if(!func(array[i], i, array)){
+    arraytwo.push(array[i])
+    
+}
 
+    }finish.push(arrayone);
+    finish.push(arraytwo);
+    return finish;
+}
 
 /** _.map
 * Arguments:
@@ -280,6 +330,25 @@ _.filter = function(array, func){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+_.map = function(coll, func){
+    var now = [];
+    if(Array.isArray(coll)){
+        for(let i = 0; i < coll.length; i++){
+            if(func(coll[i], i, coll)){
+                now.push(func(coll[i], i, coll))
+            }
+        }
+    }else
+        for(let key in coll){
+            if(func(coll[key], key, coll)){
+                now.push(func(coll[key], key, coll))
+            }
+        }
+    
+    
+    return now
+
+}
 
 
 /** _.pluck
@@ -293,9 +362,15 @@ _.filter = function(array, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 _.pluck = function(array, property){
-    
-
+    return _.map(array, function(array){
+        for(let key in array){
+            return array[key]
+        }
+    });
 }
+
+
+
 /** _.every
 * Arguments:
 *   1) A collection
@@ -316,6 +391,43 @@ _.pluck = function(array, property){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+_.every = function(coll, func){
+let allItemsPassed = true;
+if(func === undefined){
+    if(Array.isArray(coll)){
+        for(let i = 0; i < coll.length; i++){
+            if(!coll[i]){
+                allItemsPassed = false
+            }
+        }
+    }
+    else{
+        for(let key in coll){
+            if(!coll[key]){
+                allItemsPassed = false
+            }
+        }
+    }
+    }
+    else{
+        if(Array.isArray(coll)){
+            for(let i = 0; i < coll.length; i++){
+                if(!func(coll[i], i, coll)){
+                    allItemsPassed = false;
+                }
+            }
+        }
+        else{
+            for(let key in coll){
+                if(!func(coll[key], key, coll)){
+                    allItemsPassed = false
+                }
+                else func(coll[key], key, coll)
+            }
+        }
+    }
+    return allItemsPassed
+}
 
 
 
@@ -342,6 +454,44 @@ _.pluck = function(array, property){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(coll, func){
+var tru = false
+if(func === undefined){
+    if(Array.isArray(coll)){
+        for(let i = 0; i < coll.length; i++){
+            if(coll[i]){
+                tru = true;
+            }
+        }
+    }
+    else{
+        for(let key in coll){
+            if(coll[key]){
+                tru = true;
+            }
+        }
+    }
+} 
+else {
+    if(Array.isArray(coll)){
+        for(let i = 0; i < coll.length; i++){
+            if(func(coll[i], i, coll)){
+                tru = true;
+            }
+        }
+    }
+    else{
+        for(let key in coll){
+            if(func(coll[key], key, coll)){
+                tru = true;
+            }
+        }
+    }
+}
+return tru;
+};
+
+
 
 
 /** _.reduce
@@ -392,7 +542,11 @@ for(let i = 0; i <array.length; i++){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
-
+_.extend = function(target, ...objs){
+          
+    Object.assign(target, ...objs)
+return target
+}
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////

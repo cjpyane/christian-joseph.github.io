@@ -3,22 +3,61 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles(//takes parameter) {
-
-}
+function triangles(num) {
+ 
+  var string = '';
+  for (var i = 0; i < num; i++) {
+    string += '#'
+    console.log(string)
+  }
+  }
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function fizzBuzz() {
+function fizzBuzz(num) {
+  for ( var num = 1; num < 16; num ++ ) {
   
+    var checkForThree = num % 3;
+    var checkForFive = num % 5;
+    
+    
+    if ( ( checkForThree == 0 && checkForFive == 0) ) 
+      console.log( "fizzbuzz");
+    
+   
+    else if (checkForThree == 0)
+      console.log( "fizz");
+    
+    
+    else if (checkForFive == 0)
+      console.log( "buzz");
+    
+   
+    else 
+      console.log(num);
+  } 
 }
+  
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard(//takes parameter) {
+function drawChessboard(size) {
+  let board = "";
+
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      if ((x + y) % 2 == 0) {
+        board += " ";
+      } else {
+        board += "#";
+      }
+    }
+    board += "\n";
+  }
+console.log(board);
 
 }
 
